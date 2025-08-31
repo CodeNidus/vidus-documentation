@@ -1,0 +1,8 @@
+{
+  "label": "Vidus Core",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "This document provides a comprehensive guide to the vidus-core npm package WebRTC class and its associated objects, methods, and events. The WebRTC class is designed to facilitate video conferencing functionality, including setting up rooms, managing media streams, handling user connections, and dispatching events. Below is a detailed explanation of each component."
+  }
+}

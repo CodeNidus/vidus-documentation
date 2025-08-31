@@ -1,0 +1,8 @@
+{
+  "label": "Bootstrapping",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Build your Vidus app quickly"
+  }
+}
