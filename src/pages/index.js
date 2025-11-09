@@ -20,7 +20,13 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/tutorial/Introduction">
-            Docusaurus Tutorial - 5min ⏱️
+            Tutorial - 5min ⏱️
+          </Link>
+
+          <Link
+            className="button button--secondary button--lg"
+            to="https://admin.vidus.app/user/register">
+            Start for Free 🚀
           </Link>
         </div>
       </div>
