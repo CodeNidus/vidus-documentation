@@ -26,6 +26,9 @@ setup(parent, {
 })
 ```
 
+### `grantPermissions()`
+Requests access to the user's camera and microphone. This method prompts the user for media permissions and returns the current permission state along with available devices.
+
 ### `grab()`
 Captures the user's video and audio media using the specified device IDs.
 
@@ -111,8 +114,18 @@ Registers an event handler.
 ### `muteCamera()`
 Turns off the user's camera.
 
+#### Parameters
+| Parameter | Type    | Description                                 |
+|-----------|---------|---------------------------------------------|
+| status    | Boolean | Toggles the user's camera stream on or off. |
+
 ### `muteMicrophone()`
 Turns off the user's microphone.
+
+#### Parameters
+| Parameter | Type    | Description                                     |
+|-----------|---------|-------------------------------------------------|
+| status    | Boolean | Toggles the user's microphone stream on or off. |
 
 ### `resetConnectionsVideoAudioMedia()`
 Resets the user's media connections with other joined users.
@@ -230,11 +243,6 @@ Dispatches screen share status event. `onScreenShareModule`
 |-----------|---------|---------------------------|
 | status    | Boolean | Screen share status       |
 
-#### Usage
-```js
-eventTrigger(true)
-```
-
 ### `closeScreenShare()`
 Closes the screen share video area.
 
@@ -254,9 +262,6 @@ closeScreenShare({
 
 ## ScreenRecord Object
 The ScreenRecord object is a child of the Media object.
-
-### `listenToEvents()`
-Listens to media stream reset events.
 
 ### `startRecord()`
 Starts screen recording.
@@ -279,8 +284,22 @@ Cleans up recording variables.
 ### `isRecordingScreen()`
 Checks if screen is recording.
 
+### `setStatus()`
+Sets recording state for a PeerJS connection.
+
+#### Parameters
+| Parameter         | Type    | Description                                               |
+|-------------------|---------|-----------------------------------------------------------|
+| data              | Object  | Object containing connection target and recording status. |
+| data.peerJsId | String | PeerJS connection ID to target                            |
+| data.record | Boolean | Recording status                                          |
+
 ### `eventTrigger()`
 Dispatches screen record status event. `onScreenRecordModule`
 
-
+#### Parameters
+| Parameter         | Type    | Description                              |
+|-------------------|---------|------------------------------------------|
+| status            | Boolean | Toggles the room recording on or off.    |
+| sendToConnections | Boolean | Send the recording status to room users. |
 

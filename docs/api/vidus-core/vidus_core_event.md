@@ -33,7 +33,7 @@ Sets up listeners for events received from the server via the socket.
 - `you-are-ban`: Triggers `banInRoom` callback
 - `info-room-data`: Debug event for room information
 
-### `addEvent(type, event, method)`
+### `addEventHandler(type, event, method)`
 Adds a custom event handler.
 
 #### Parameters
@@ -43,7 +43,7 @@ Adds a custom event handler.
 | event     | String   | Specific event name       |
 | method    | Function | Handler function          |
 
-### `handler(type, event, data)`
+### `executeHandler(type, event, data)`
 Executes the registered method for an event.
 
 #### Parameters

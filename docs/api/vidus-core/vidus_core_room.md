@@ -41,6 +41,16 @@ Handles the user leaving the room. It closes all connections with other users, r
 | roomId    | String | Room ID being left              |
 | userData  | Object | User information for departure  |
 
+
+### `requestAction()`
+Submits a request to execute an action in the room environment.
+
+#### Parameters
+| Parameter | Type   | Description              |
+|-----------|--------|--------------------------|
+| action    | Object | Action object to request |
+
+
 ### `runRequestedAction(action)`
 Executes an action requested by other users. It dispatches a custom event of the form `on{ActionName}Action`.
 

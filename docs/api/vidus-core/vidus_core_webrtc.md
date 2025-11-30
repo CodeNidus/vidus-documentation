@@ -25,6 +25,27 @@ This method accepts input as a single object with named properties.
 | waitingList  | Array  | Users awaiting access to session   |
 | userSettings | Object | User settings                      |
 
+##### Options attributes
+---
+**name** `string`
+room joining user name
+
+**roomId** `string`
+joning room id
+
+**localVideoRef** `string`
+Theme local user video element id
+
+**remoteVideoRef** `string`
+Theme joined user video element id
+
+**remoteAudioRef** `string`
+Theme joined user audio element id
+
+**resolution** `string`
+Joined user stream video resolution 
+
+
 #### Example
 ```js
 webrtc.setup({
@@ -35,13 +56,6 @@ webrtc.setup({
         remoteVideoRef: 'remote-video',
         remoteAudioRef: 'remote-audio',
         resolution: 'hd'
-      },
-      callback: {
-        joinRoom: userJoinRoom, // Called when a user joins the room
-        leftRoom: userLeftRoom, // Called when a user leaves the room
-        invalidRoom: invalidRoom, // Called if room ID is invalid
-        exitConference: exitConference, // Called when a user exit from conference
-        banInRoom: banInRoom, // Called when a user ban by moderator
       },
       connections: [],
       waitingList: [],
@@ -63,14 +77,16 @@ Initializes the video conference with custom configurations.
 
 ## Connection Management
 
-### `connection()`
-Manages socket connection state.
+### `openConnection()`
+Open socket connection.
 
 #### Parameters
 | Parameter | Type    | Description                                   |
 |-----------|---------|-----------------------------------------------|
-| data      | Object  | Connection data                               |
-| status    | Boolean | Connection state (true = open, false = close) |
+| token     | String  | User authorization token                      |
+
+### `closeConnection()`
+Close socket connection.
 
 ### `initialPeerJs()`
 Establishes connection with PeerJS server.
@@ -89,9 +105,6 @@ Handles new user connections.
 ### `startStreamUserMedia()`
 Initiates user media stream (video/audio/screen share) and establishes PeerJS connections.
 
-### `getDevices()`
-Retrieves available media devices (cameras, microphones, speakers).
-
 ## Event Management
 
 ### `on()`
@@ -104,27 +117,41 @@ Registers event listeners.
 | event     | String   | Specific event name |
 | method    | Function | Handler function    |
 
-
-### `callbackAction()`
-Executes a callback action by name, as defined during the setup.
+### `emit()`
+Trigger a CustomEvent event.
 
 #### Parameters
-| Parameter | Type   | Description                              |
-|-----------|--------|------------------------------------------|
-| name      | String | Defined callback method name             |
-| data      | Any    | Any type data, passed to callback method |
+| Parameter | Type   | Description     |
+|-----------|--------|-----------------|
+| type      | String | Event name      |
+| data      | Object | Additional data |
 
 
 ## Utilities
 
-### `runAction()`
-Requests to run a specific action by name in the defined room. This method emits the `run-room-action` event to the server via the socket.
+### `getAction()`
+Retrieves a specific action item by its unique name. The returned action item can perform one of two functions:
+1.  **Execute the Action:** Run the current action in a predefined room.
+2.  **Configure the Action:** Open the management section (UI) to set up the action's properties.
 
 #### Parameters
-| Parameter | Type   | Description                              |
-|-----------|--------|------------------------------------------|
-| roomId    | String | Target room id.                          |
-| action    | Object | Action data by specific action structure |
+| Parameter   | Type    | Description                              |
+|-------------|---------|------------------------------------------|
+| name        | String  | Target room id.                          |
+| attributes  | Object  | Action data by specific action structure |
+| users       | Array   | Action execute users list                |
+| moderator   | Boolean | Action moderator type                    |
+
+
+### `registerActionReference()`
+Register action reference item.
+
+#### Parameters
+| Parameter | Type    | Description               |
+|-----------|---------|---------------------------|
+| name      | String  | Action name               |
+| object    | Object  | Action reference          |
+
 
 ### `camelToKebab()`
 Converts camelCase to kebab-case.
@@ -169,6 +196,15 @@ Retrieves or generates user authentication token.
 | next      | Function | Success callback (receives token) |
 | error     | Function | Error callback                    |
 
+### `can()`
+Check user has a specific ability or not.
+
+#### Parameters
+| Parameter | Type   | Description  |
+|-----------|--------|--------------|
+| name      | String | Ability name |
+
+
 ### `createRoom()`
 Creates new conference room.
 
@@ -180,6 +216,24 @@ Creates new conference room.
 ### `getRoomsList()`
 Retrieves available rooms list.
 
+### `getDevTools()`
+Returns development utility methods for use within actions. Provides access to WebRTC core functionality and common operations.
 
-
+#### Methods
+| Method               | Description                                                            |
+|----------------------|------------------------------------------------------------------------|
+| `core()`             | WebRTC core instance                                                   |
+| `getConfigs()`       | Retrieves WebRTC configuration settings                                |
+| `getPeerJsId()`      | Returns current connection's peer ID                                   |
+| `getSocket()`        | Returns WebRTC socket instance                                         |
+| `getConnections()`   | Gets connections for all users currently in the room                   |
+| `emit()`             | Triggers a custom event                                                |
+| `notify()`           | Displays a notification message                                        |
+| `leftRoom()`         | Leaves the current room                                                |
+| `muteCamera()`       | Disables the user's camera                                             |
+| `muteMicrophone()`   | Disables the user's microphone                                         |
+| `unmuteCamera()`     | Enables the user's camera                                              |
+| `unmuteMicrophone()` | Enables the user's microphone                                          |
+| `getRequest()`       | Gets authorized request (with `true`) or simple request (with `false`) |
+| `getToken()`         | Retrieves user authorization token                                     |
 
