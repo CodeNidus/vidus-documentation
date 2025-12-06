@@ -83,6 +83,12 @@ const config = {
             label: 'API',
           },
           {
+            type: 'docSidebar',
+            sidebarId: 'guidesSidebar',
+            position: 'left',
+            label: 'Guides',
+          },
+          {
             href: 'https://www.codenidus.com',
             label: 'CodeNidus',
             position: 'right'
