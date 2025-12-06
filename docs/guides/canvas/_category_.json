@@ -1,0 +1,8 @@
+{
+  "label": "Canvas Feature",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "This document provides a comprehensive guide to create and add extra custom actions to Vidus package."
+  }
+}

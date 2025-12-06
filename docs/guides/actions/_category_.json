@@ -1,0 +1,8 @@
+{
+  "label": "Custom Actions",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "This documentation section provides a comprehensive guide to working with custom actions, covering everything from understanding their architecture to implementation. You'll learn what custom actions are and how they enable you to extend functionality through a secure client-server workflow. The guide details the required structure and explains each section's purpose, including Vue components for UI, JavaScript modules for execution logic, and metadata files for registration. Finally, you'll see how to integrate custom actions into your project to recognize and use your custom functionality."
+  }
+}
